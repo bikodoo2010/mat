@@ -1,202 +1,457 @@
+```html
 <!DOCTYPE html>
 <html lang="kk">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Ұстазға алғыс</title>
+
+<title>Туған күніңмен! 🎂</title>
 
 <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;500;700&display=swap" rel="stylesheet">
 
 <style>
 *{
-margin:0;
-padding:0;
-box-sizing:border-box;
-font-family:Poppins,sans-serif;
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+    font-family:Poppins,sans-serif;
 }
 
 body{
-height:100vh;
-display:flex;
-justify-content:center;
-align-items:center;
-overflow:hidden;
-background:#0f172a;
-position:relative;
+    min-height:100vh;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    overflow:hidden;
+    background:
+        radial-gradient(circle at top,#312e81 0%,#111827 45%,#020617 100%);
+    position:relative;
 }
 
-/* Фон с математикой */
+/* Анимация фона */
+.bg{
+    position:absolute;
+    inset:0;
+    overflow:hidden;
+    pointer-events:none;
+}
+
 .math{
-position:absolute;
-color:rgba(255,255,255,.08);
-font-size:28px;
-animation:float 18s linear infinite;
-pointer-events:none;
+    position:absolute;
+    color:rgba(255,255,255,.12);
+    font-weight:bold;
+    animation:float linear infinite;
 }
 
 @keyframes float{
-0%{
-transform:translateY(100vh) rotate(0deg);
-opacity:0;
-}
-10%{
-opacity:1;
-}
-100%{
-transform:translateY(-120px) rotate(360deg);
-opacity:0;
-}
+    0%{
+        transform:translateY(110vh) rotate(0deg);
+        opacity:0;
+    }
+
+    10%{
+        opacity:1;
+    }
+
+    90%{
+        opacity:1;
+    }
+
+    100%{
+        transform:translateY(-120px) rotate(360deg);
+        opacity:0;
+    }
 }
 
+/* Конфетти */
+.confetti{
+    position:absolute;
+    width:8px;
+    height:15px;
+    animation:fall linear infinite;
+}
+
+@keyframes fall{
+    0%{
+        transform:translateY(-100px) rotate(0deg);
+    }
+
+    100%{
+        transform:translateY(110vh) rotate(720deg);
+    }
+}
+
+/* Карточка */
 .card{
-width:90%;
-max-width:750px;
-background:rgba(255,255,255,.08);
-backdrop-filter:blur(12px);
-border:2px solid rgba(255,255,255,.15);
-border-radius:25px;
-padding:40px;
-text-align:center;
-color:white;
-box-shadow:0 10px 40px rgba(0,0,0,.4);
+    position:relative;
+    z-index:5;
+
+    width:90%;
+    max-width:760px;
+
+    padding:45px 35px;
+
+    text-align:center;
+    color:white;
+
+    background:rgba(255,255,255,.10);
+    backdrop-filter:blur(20px);
+
+    border:1px solid rgba(255,255,255,.25);
+    border-radius:30px;
+
+    box-shadow:
+        0 20px 80px rgba(0,0,0,.5),
+        inset 0 0 30px rgba(255,255,255,.03);
+
+    animation:appear 1s ease;
 }
 
-img{
-width:180px;
-height:180px;
-border-radius:50%;
-object-fit:cover;
-border:5px solid #38bdf8;
-margin-bottom:20px;
+@keyframes appear{
+    from{
+        opacity:0;
+        transform:translateY(40px) scale(.95);
+    }
+
+    to{
+        opacity:1;
+        transform:translateY(0) scale(1);
+    }
+}
+
+/* Фото */
+.photo{
+    width:150px;
+    height:150px;
+
+    object-fit:cover;
+
+    border-radius:50%;
+
+    border:5px solid #facc15;
+
+    box-shadow:
+        0 0 30px rgba(250,204,21,.5);
+
+    margin-bottom:20px;
+
+    animation:pulse 2s infinite;
+}
+
+@keyframes pulse{
+    0%,100%{
+        box-shadow:0 0 25px rgba(250,204,21,.4);
+    }
+
+    50%{
+        box-shadow:0 0 50px rgba(250,204,21,.8);
+    }
 }
 
 h1{
-font-size:42px;
-margin-bottom:15px;
-color:#7dd3fc;
+    font-size:46px;
+    line-height:1.2;
+
+    background:linear-gradient(
+        90deg,
+        #facc15,
+        #fb7185,
+        #a78bfa,
+        #38bdf8
+    );
+
+    -webkit-background-clip:text;
+    color:transparent;
+
+    margin-bottom:12px;
 }
 
 h2{
-font-size:20px;
-margin-bottom:20px;
-color:#facc15;
+    font-size:22px;
+    color:#fde68a;
+    margin-bottom:25px;
 }
 
 p{
-font-size:20px;
-line-height:1.8;
+    font-size:19px;
+    line-height:1.8;
+    color:#f8fafc;
 }
 
+/* Формула */
+.formula{
+    margin-top:25px;
+
+    font-size:25px;
+    font-weight:bold;
+
+    color:#86efac;
+
+    text-shadow:
+        0 0 15px rgba(74,222,128,.5);
+}
+
+/* Кнопка */
 button{
-margin-top:25px;
-padding:15px 35px;
-border:none;
-border-radius:30px;
-font-size:18px;
-font-weight:bold;
-cursor:pointer;
-background:#38bdf8;
-color:white;
-transition:.3s;
+    margin-top:30px;
+
+    padding:15px 35px;
+
+    border:none;
+    border-radius:50px;
+
+    font-size:18px;
+    font-weight:bold;
+
+    cursor:pointer;
+
+    color:#111827;
+
+    background:linear-gradient(
+        90deg,
+        #facc15,
+        #fb7185
+    );
+
+    box-shadow:
+        0 10px 30px rgba(251,113,133,.3);
+
+    transition:.3s;
 }
 
 button:hover{
-transform:scale(1.07);
-background:#0ea5e9;
+    transform:translateY(-3px) scale(1.05);
+
+    box-shadow:
+        0 15px 40px rgba(251,113,133,.5);
 }
 
+button:active{
+    transform:scale(.96);
+}
+
+/* Скрытое поздравление */
 #text{
-margin-top:25px;
-font-size:24px;
-color:#facc15;
-font-weight:bold;
+    max-height:0;
+    overflow:hidden;
+
+    margin-top:0;
+
+    opacity:0;
+
+    font-size:20px;
+    line-height:1.7;
+
+    color:#fde68a;
+
+    transition:
+        max-height .8s ease,
+        opacity .8s ease,
+        margin .8s ease;
 }
 
-.formula{
-margin-top:25px;
-font-size:26px;
-color:#4ade80;
-font-weight:bold;
+#text.show{
+    max-height:200px;
+    margin-top:25px;
+    opacity:1;
+}
+
+/* Мобильная версия */
+@media(max-width:600px){
+
+    .card{
+        width:94%;
+        padding:30px 20px;
+    }
+
+    .photo{
+        width:120px;
+        height:120px;
+    }
+
+    h1{
+        font-size:34px;
+    }
+
+    h2{
+        font-size:18px;
+    }
+
+    p{
+        font-size:16px;
+    }
+
+    .formula{
+        font-size:20px;
+    }
+
+    button{
+        font-size:16px;
+        padding:13px 25px;
+    }
 }
 </style>
 </head>
 
 <body>
 
+<!-- Фон -->
+<div class="bg" id="bg"></div>
+
+<!-- Основная карточка -->
 <div class="card">
 
-<img src="image.jpg" alt="Ұстаз">
+    <img
+        src="image.jpg"
+        alt="Туған күн иесі"
+        class="photo"
+    >
 
-<h1>📐 Үздік математика кураторы!</h1>
+    <h1>🎂 Туған күніңмен! 🎉</h1>
 
-<h2>x² + y² = Алғыс² ❤️</h2>
+    <h2>
+        Бүгін — сенің ерекше күнің! ❤️
+    </h2>
 
-<p>
-Құрметті ұстаз!<br><br>
+    <p>
 
-Сіздің әрбір сабағыңыз бізге тек формулаларды ғана емес,
-ойлауды, ізденуді және қиын есептердің шешімін табуды үйретті.
-Әрбір теңдеу мен дәлелдеудің артында Сіздің еңбегіңіз жатыр.
+        Осы ерекше күніңде саған зор денсаулық,
+        шексіз бақыт, үлкен жетістіктер және
+        әр күннің қуанышқа толы болуын тілеймін! 🌟
 
-<br><br>
+        <br><br>
 
-Білімге деген сүйіспеншілікті оятқаныңыз үшін
-Сізге үлкен рақмет!
-</p>
+        Армандарың біртіндеп мақсатқа,
+        мақсаттарың нәтижеге,
+        ал нәтижелерің үлкен жеңістерге айналсын! 🚀
 
-<div class="formula">
-∑(Білім) + Еңбек = Болашақ
-</div>
+        <br><br>
 
-<button onclick="showText()">📚 Алғысымды ашу</button>
+        Әрқашан жақындарыңның ортасында
+        бақытты болып, күлімдеп жүр! 😊
 
-<div id="text"></div>
+    </p>
+
+    <div class="formula">
+        🎯 Арман + Еңбек + Уақыт = Жеңіс 🏆
+    </div>
+
+    <button onclick="showText()">
+        🎁 Құттықтауды ашу
+    </button>
+
+    <div id="text">
+        ✨ Туған күніңмен!  
+        Өміріңдегі әрбір жаңа жыл
+        бұрынғысынан да қызықты,
+        бақытты және табысты болсын! ❤️
+
+        <br>
+
+        🎉 Барлық арманың орындалсын! 🎉
+    </div>
 
 </div>
 
 <script>
-function showText(){
-document.getElementById("text").innerHTML=
-"∞ Сізге зор денсаулық, ұзақ ғұмыр, шығармашылық табыс және талантты шәкірттер тілеймін!";
-}
 
-const formulas=[
-"x²+y²",
-"π",
-"√64",
-"Σ",
-"∫",
-"Δ",
-"f(x)",
-"lim",
-"∞",
-"2+2=4",
-"a²+b²=c²",
-"sin x",
-"cos x",
-"log",
-"∂",
-"√x",
-"10²",
-"∑"
+/* Математикалық символдар */
+const formulas = [
+    "x² + y²",
+    "π",
+    "√64",
+    "Σ",
+    "∫",
+    "Δ",
+    "f(x)",
+    "∞",
+    "2+2=4",
+    "a²+b²=c²",
+    "sin x",
+    "cos x",
+    "log",
+    "√x",
+    "10²",
+    "∑",
+    "E = mc²"
 ];
 
+/* Создание формул */
 function createFormula(){
-const f=document.createElement("div");
-f.className="math";
-f.innerHTML=formulas[Math.floor(Math.random()*formulas.length)];
-f.style.left=Math.random()*100+"vw";
-f.style.fontSize=(18+Math.random()*28)+"px";
-f.style.animationDuration=(10+Math.random()*10)+"s";
-document.body.appendChild(f);
 
-setTimeout(()=>{
-f.remove();
-},20000);
+    const f = document.createElement("div");
+
+    f.className = "math";
+
+    f.innerHTML =
+        formulas[Math.floor(Math.random() * formulas.length)];
+
+    f.style.left =
+        Math.random() * 100 + "vw";
+
+    f.style.fontSize =
+        (18 + Math.random() * 28) + "px";
+
+    f.style.animationDuration =
+        (8 + Math.random() * 12) + "s";
+
+    document.getElementById("bg").appendChild(f);
+
+    setTimeout(() => {
+        f.remove();
+    }, 20000);
 }
 
-setInterval(createFormula,300);
+setInterval(createFormula,350);
+
+
+/* Конфетти */
+function createConfetti(){
+
+    const c = document.createElement("div");
+
+    c.className = "confetti";
+
+    c.style.left =
+        Math.random() * 100 + "vw";
+
+    c.style.background =
+        [
+            "#facc15",
+            "#fb7185",
+            "#38bdf8",
+            "#a78bfa",
+            "#4ade80"
+        ][Math.floor(Math.random() * 5)];
+
+    c.style.animationDuration =
+        (4 + Math.random() * 5) + "s";
+
+    c.style.animationDelay =
+        Math.random() * 3 + "s";
+
+    document.getElementById("bg").appendChild(c);
+
+    setTimeout(() => {
+        c.remove();
+    }, 10000);
+}
+
+setInterval(createConfetti,180);
+
+
+/* Открытие поздравления */
+function showText(){
+
+    const text =
+        document.getElementById("text");
+
+    text.classList.toggle("show");
+
+}
+
 </script>
 
 </body>
 </html>
+```
